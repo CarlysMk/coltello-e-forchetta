@@ -1,0 +1,42 @@
+import java.io.*;
+import java.nio.file.*;
+
+public class GestioneFile {
+    private String percorsoRelativo;
+
+    public GestioneFile(String percorsoRelativo) {
+        this.percorsoRelativo = percorsoRelativo;
+    }
+
+    public void scriviSuFile(String testo, boolean append) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(percorsoRelativo, append))) {
+            writer.write(testo);
+            writer.newLine();
+            System.out.println("Scrittura completata su: " + percorsoRelativo);
+        } catch (IOException e) {
+            System.out.println("Errore di scrittura: " + e.getMessage());
+        }
+    }
+
+    public void leggiDaFile() {
+        Path path = Paths.get(percorsoRelativo);
+
+        if (!Files.exists(path)) {
+            System.out.println("Errore: Il file '" + percorsoRelativo + "' non esiste!");
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(percorsoRelativo))) {
+            String linea;
+            System.out.println("\nContenuto di " + percorsoRelativo + ":");
+            while ((linea = reader.readLine()) != null) {
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Errore di lettura: " + e.getMessage());
+        }
+    }
+}
+
+
+

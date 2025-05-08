@@ -1,8 +1,17 @@
+package com.coltelloeforchetta.models;
+
+import org.mindrot.jbcrypt.BCrypt;
+
+import com.coltelloeforchetta.utility.GestioneFile;  
+
 public class Utente {
     
+
     private String nome, cognome, username, ClearPassword, dataNascita, ruolo;
     private String [] domicilio = new String[3];
+    private String HashPsw;
     boolean boolRuolo; // TRUE per ristoratore, FALSE per utente
+    private GestioneFile file = new GestioneFile("data/Utenti.txt");
 
 
     public Utente(String nome, String cognome, String username, String psw, String dataNascita, String ruolo) {
@@ -17,8 +26,15 @@ public class Utente {
         } else if (ruolo.equals("utente")) {
             this.boolRuolo = false;
         }
+        HashPsw = BCrypt.hashpw(psw, BCrypt.gensalt());
+        file.scriviSuFile(nome + "-" + cognome + "-" + username + "-" + HashPsw + "-" + dataNascita + "-" + ruolo, true);
+
     }
 
+
+    /* //controllo psw
+    boolean match = BCrypt.checkpw("password123", hashedPassword);
+        System.out.println("La password corrisponde? " + match); */
 
     
   /*   GestioneFile file = new GestioneFile("data/Utenti.txt");

@@ -1,6 +1,11 @@
+package com.coltelloeforchetta;
+
 import java.util.Scanner;
 
-public class main {
+import com.coltelloeforchetta.models.Utente;
+
+
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
@@ -11,12 +16,14 @@ public class main {
 
 //commento con shift + option + a 
         while (true) { 
-            System.out.println("\nBenvenuto in The Knife");
-            System.out.println("1. Login");
-            System.out.println("2. Registrazione utente");
-            System.out.println("3. Guest");
-            System.out.println("0. Esci");
-            System.out.print("Scegli un'opzione: ");
+            System.out.println("----------------------------------" + 
+                                "\nBenvenuto in The Knife" + 
+                                "\n1. Login" + 
+                                "\n2. Registrazione utente" +
+                                "\n3. Guest" +
+                                "\n0. Esci" +
+                                "\n----------------------------------" +
+                                "\nScegli un'opzione: ");
 
             if (sc.hasNextInt()) {
                 scelta = sc.nextInt();
@@ -24,9 +31,10 @@ public class main {
 
                 switch (scelta) {
                     case 1:
-                        System.out.println("Login");
-                        System.out.println("1. Login Utente");
-                        System.out.println("2. Login Ristoratore");
+                        System.out.println("Login" + 
+                                "\n1. Login Utente" +
+                                "\n2. Login Ristoratore" + 
+                                "\n----------------------------------");
 
                         switch (Integer.parseInt(sc.nextLine())) {
                             case 1:

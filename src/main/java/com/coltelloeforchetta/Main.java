@@ -49,6 +49,7 @@ public class Main {
                         System.out.println("Registrazione nuovo utente");
                         System.out.println("1. Registrazione Utente");
                         System.out.println("2. Registrazione Ristoratore");
+
                         switch (Integer.parseInt(sc.nextLine())) {
                             case 1:
                                 System.out.println("Inserisci nome");
@@ -57,6 +58,15 @@ public class Main {
                                 cognome = sc.nextLine();
                                 System.out.println("Inserisci username");
                                 username = sc.nextLine();
+
+                                if (fileUtenti.cercaMatch(username, 2)) {
+                                    System.out.println("Username già esistente, riprova");
+                                    break;
+                                } else {
+                                    System.out.println("Username disponibile");
+                                    
+                                }
+
                                 System.out.println("Inserisci password");
                                 password = sc.nextLine();
                                 System.out.println("Inserisci data di nascita"); // da rendere facoltativa e da controllare l'input... 

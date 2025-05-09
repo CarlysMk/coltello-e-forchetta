@@ -97,6 +97,13 @@ public class GestioneFile {
         return null;
     }  
 
+    
+
+    public String[] getRiga(){
+        String[] righe = getAllRows();
+
+    }
+
 }
 
 

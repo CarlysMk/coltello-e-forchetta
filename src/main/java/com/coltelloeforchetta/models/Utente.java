@@ -13,7 +13,7 @@ public class Utente {
     boolean boolRuolo; // TRUE per ristoratore, FALSE per utente
     private GestioneFile file = new GestioneFile("data/Utenti.txt");
 
-
+    //costruttore per registrazione utente
     public Utente(String nome, String cognome, String username, String psw, String dataNascita, String ruolo) {
         this.nome = nome;
         this.cognome = cognome;
@@ -28,6 +28,18 @@ public class Utente {
         }
         HashPsw = BCrypt.hashpw(psw, BCrypt.gensalt());
         file.scriviSuFile(nome + "-" + cognome + "-" + username + "-" + HashPsw + "-" + dataNascita + "-" + ruolo, true);
+
+    }
+
+    //costruttore per login utente
+    public Utente(String username, String psw){
+        this.username = username;
+        this.ClearPassword = psw;
+        if (login(username, psw)) {
+            System.out.println("Login effettuato con successo");
+        } else {
+            System.out.println("Login fallito");
+        }
 
     }
 
@@ -50,9 +62,11 @@ public class Utente {
         return ruolo;
     }
 
-    public boolean login(String username, String password) {
+    
+
+    private boolean login(String username, String password) {
         if(file.cercaMatch(username, 2)){
-            if (file.cercaMatch(password, 3)) {
+            if (BCrypt.checkpw(password,file.getMatch(password, 3))) {
                 return true;
             } else {
                 System.out.println("Password errata");

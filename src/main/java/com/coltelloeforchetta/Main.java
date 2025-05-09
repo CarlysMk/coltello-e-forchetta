@@ -43,10 +43,11 @@ public class Main {
                                 System.out.println("Login Utente");
                                 System.out.println("inserisci username");
                                 username = sc.nextLine();
-                                
-
                                 System.out.println("inserisci password");
                                 password = sc.nextLine(); 
+
+                                
+
                                 break;
                             case 2:
                                 System.out.println("Login Ristoratore");

@@ -97,11 +97,26 @@ public class GestioneFile {
         return null;
     }  
 
-    
+    private int getRowIndex(String match, int colonna) {
+        String[] righe = getAllRows();
+        if (righe == null) {
+            return -1;
+        }
+        for (int i = 0; i < righe.length; i++) {
+            if (righe[i].split("-")[colonna].equals(match)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     public String[] getRiga(){
         String[] righe = getAllRows();
-
+        if (righe == null) {
+            return null;
+        }
+        String[] riga = righe[getRowIndex(righe[0], 0)].split("-");
+        return riga;    
     }
 
 }

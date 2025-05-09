@@ -21,9 +21,9 @@ public class Utente {
         this.ClearPassword = psw;
         this.dataNascita = dataNascita;
         this.ruolo = ruolo;
-        if (ruolo.equals("ristoratore")) {
+        if (this.ruolo.equals("ristoratore")) {
             this.boolRuolo = true;
-        } else if (ruolo.equals("utente")) {
+        } else if (this.ruolo.equals("utente")) {
             this.boolRuolo = false;
         }
         HashPsw = BCrypt.hashpw(psw, BCrypt.gensalt());
@@ -51,6 +51,11 @@ public class Utente {
             this.cognome = dati[1];
             this.dataNascita = dati[4];
             this.ruolo = dati[5];
+            if (this.ruolo.equals("ristoratore")) {
+                this.boolRuolo = true;
+            } else if (this.ruolo.equals("utente")) {
+                this.boolRuolo = false;
+            }
         }
         
         

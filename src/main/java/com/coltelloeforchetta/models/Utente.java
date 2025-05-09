@@ -50,5 +50,18 @@ public class Utente {
         return ruolo;
     }
 
-    
+    public boolean login(String username, String password) {
+        if(file.cercaMatch(username, 2)){
+            if (file.cercaMatch(password, 3)) {
+                return true;
+            } else {
+                System.out.println("Password errata");
+                return false;
+            }
+        }else {
+            System.out.println("Username errato");
+            return false;
+        }
+    }
+
 }

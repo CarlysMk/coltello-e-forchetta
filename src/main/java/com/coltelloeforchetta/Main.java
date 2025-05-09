@@ -46,7 +46,7 @@ public class Main {
                                 System.out.println("inserisci password");
                                 password = sc.nextLine(); 
 
-                                
+                                utente = new Utente(username, password);
 
                                 break;
                             case 2:

@@ -115,8 +115,12 @@ public class GestioneFile {
         if (righe == null) {
             return null;
         }
-        String[] riga = righe[getRowIndex(match, colonna)].split("-");
-        return riga;    
+        if(getRowIndex(match, colonna) == -1){
+            return null;
+        }else {
+            String[] riga = righe[getRowIndex(match, colonna)].split("-");
+            return riga; 
+        } 
     }
 
 }

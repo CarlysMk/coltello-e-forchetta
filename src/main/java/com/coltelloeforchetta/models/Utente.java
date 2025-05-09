@@ -40,11 +40,20 @@ public class Utente {
         } else {
             System.out.println("Login fallito");
         }
+        
         String[] dati = file.getRiga(username, 2);
-        this.nome = dati[0];
-        this.cognome = dati[1];
-        this.dataNascita = dati[4];
-        this.ruolo = dati[5];
+        if (dati == null) {
+            System.out.println("Utente non trovato");
+            return;
+            
+        }else {
+            this.nome = dati[0];
+            this.cognome = dati[1];
+            this.dataNascita = dati[4];
+            this.ruolo = dati[5];
+        }
+        
+        
     }
 
 
@@ -70,7 +79,7 @@ public class Utente {
 
     private boolean login(String username, String password) {
         if(file.cercaMatch(username, 2)){
-            if (BCrypt.checkpw(password,file.getMatch(password, 3))) {
+            if (file.cercaMatch(password, 3)) {
                 return true;
             } else {
                 System.out.println("Password errata");

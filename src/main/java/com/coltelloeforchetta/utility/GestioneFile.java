@@ -82,16 +82,20 @@ public class GestioneFile {
         return false;
     }  
 
-    //come il medoto cercaMatch ma restituisce il valore specifico ricercato
-    public String getMatch(String match, int colonna) {
+    /* come il medoto cercaMatch ma restituisce il valore specifico ricercato
+    colonnaMatch = colonna in cui cercare il match
+    colonnaGet = colonna da cui restituire il valore */
+    public String getMatch(String match, int colonnaMatch, int colonnaGet) {
         String[] righe = getAllRows();
         if (righe == null) {
+            System.out.println("ritorno null");
             return null;
         }
         for (String riga : righe) {
-            String ret = riga.split("-")[colonna];
+            String ret = riga.split("-")[colonnaMatch];
+            String get = riga.split("-")[colonnaGet];
             if (ret.equals(match)) {
-                return ret;
+                return get;
             }
         }
         return null;
@@ -122,6 +126,24 @@ public class GestioneFile {
             return riga; 
         } 
     }
+
+    /* BCrypt bCrypt = new BCrypt();
+    public boolean temp(String password){
+        String hashedPassword = bCrypt.hashpw(password, bCrypt.gensalt());
+        System.out.println("Password hashata: " + hashedPassword);
+        System.out.println("Password da controllare: " + password);
+        System.out.println("Password da controllare: " + getMatch(password, 3));
+        if (bCrypt.checkpw(password, hashedPassword)) {
+            System.out.println("password corretta");
+            return true;
+        } else {
+            
+            System.out.println("password errata");
+            return false;
+        }
+    } */
+
+    // TODO controllare utenti duplicati 
 
 }
 

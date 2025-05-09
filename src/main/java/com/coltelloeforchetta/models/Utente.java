@@ -80,11 +80,11 @@ public class Utente {
         return ruolo;
     }
 
-    
 
     private boolean login(String username, String password) {
         if(file.cercaMatch(username, 2)){
-            if (file.cercaMatch(password, 3)) {
+            System.out.println("password trovata nel database..." + file.getMatch(username, 2, 3));
+            if (BCrypt.checkpw(password, file.getMatch(username, 2, 3))) {
                 return true;
             } else {
                 System.out.println("Password errata");

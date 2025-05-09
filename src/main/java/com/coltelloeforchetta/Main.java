@@ -47,11 +47,7 @@ public class Main {
                         
                     case 2:
                         System.out.println("Registrazione nuovo utente");
-                        System.out.println("1. Registrazione Utente");
-                        System.out.println("2. Registrazione Ristoratore");
 
-                        switch (Integer.parseInt(sc.nextLine())) {
-                            case 1:
                                 System.out.println("Inserisci nome");
                                 nome = sc.nextLine();
                                 System.out.println("Inserisci cognome");
@@ -71,33 +67,27 @@ public class Main {
                                 password = sc.nextLine();
                                 System.out.println("Inserisci data di nascita"); // da rendere facoltativa e da controllare l'input... 
                                 dataNascita = sc.nextLine();
-                                ruolo = "utente";
+
+                                System.out.println("Sei un ristoratore? (1. Si / 2. No)");
+
+                                switch (Integer.parseInt(sc.nextLine())) {
+                                    case 1:
+                                        ruolo = "ristoratore";
+                                        break;
+                                    case 2:
+                                        ruolo = "utente";
+                                        break;
+                                    default:
+                                        System.out.println("Opzione non valida");
+                                        continue;
+                                }
+
                                 utente = new Utente(nome, cognome, username, password, dataNascita, ruolo);
                                 System.out.println("Registrazione completata!");
                                 System.out.println("Benvenuto " + utente.getUsername());
                                 System.out.println("Effettua nuovamente il login dalla tab di inizio");
                                 break;
-                            case 2:
-                                System.out.println("Inserisci nome");
-                                nome = sc.nextLine();
-                                System.out.println("Inserisci cognome");
-                                cognome = sc.nextLine();
-                                System.out.println("Inserisci username");
-                                username = sc.nextLine();
-                                System.out.println("Inserisci password");
-                                password = sc.nextLine();
-                                System.out.println("Inserisci data di nascita"); // da rendere facoltativa
-                                dataNascita = sc.nextLine();
-                                ruolo = "ristoratore";
-                                utente = new Utente(nome, cognome, username, password, dataNascita, ruolo);
-                                System.out.println("Registrazione completata!");
-                                System.out.println("Benvenuto " + utente.getUsername());
-                                System.out.println("Effettua nuovamente il login dalla tab di inizio");
-                                break;
-                            default:
-                                throw new AssertionError();
-                        }
-                        break;
+                            
                     case 3:
                         System.out.println("Accesso come Guest!");
                         break;

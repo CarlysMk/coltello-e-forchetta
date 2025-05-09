@@ -46,7 +46,6 @@ public class GestioneFile {
         }
     }
 
-
     private String[] getAllRows(){
         ArrayList<String> righe = new ArrayList<>();
         Path path = Paths.get(percorsoRelativo);
@@ -142,8 +141,6 @@ public class GestioneFile {
             return false;
         }
     } */
-
-    // TODO controllare utenti duplicati 
 
 }
 

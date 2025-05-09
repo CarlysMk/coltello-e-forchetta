@@ -33,33 +33,18 @@ public class Main {
 
                 switch (scelta) {
                     case 1:
-                        System.out.println("Login" + 
-                                "\n1. Login Utente" +
-                                "\n2. Login Ristoratore" + 
-                                "\n----------------------------------");
+                        System.out.println("Login\n" + 
+                            "----------------------------------");
 
-                        switch (Integer.parseInt(sc.nextLine())) {
-                            case 1:
-                                System.out.println("Login Utente");
-                                System.out.println("inserisci username");
-                                username = sc.nextLine();
-                                System.out.println("inserisci password");
-                                password = sc.nextLine(); 
+                        System.out.println("inserisci username");
+                        username = sc.nextLine();
+                        System.out.println("inserisci password");
+                        password = sc.nextLine(); 
 
-                                utente = new Utente(username, password);
+                        utente = new Utente(username, password);
 
-                                break;
-                            case 2:
-                                System.out.println("Login Ristoratore");
-                                System.out.println("inserisci username");
-                                username = sc.nextLine();
-                                System.out.println("inserisci password");
-                                password = sc.nextLine();
-                                break;
-                            default:
-                                System.out.println("Opzione non valida");
-                        }
                         break;
+                        
                     case 2:
                         System.out.println("Registrazione nuovo utente");
                         System.out.println("1. Registrazione Utente");

@@ -69,8 +69,17 @@ public class GestioneFile {
         return righeArray;
     }
 
-    public void cercaMatch(){
-
+    public boolean cercaMatch(String match, int colonna) {
+        String[] righe = getAllRows();
+        if (righe == null) {
+            return false;
+        }
+        for (String riga : righe) {
+            if (riga.split("-")[colonna].equals(match)) {
+                return true;
+            }
+        }
+        return false;
     }  
 
 }

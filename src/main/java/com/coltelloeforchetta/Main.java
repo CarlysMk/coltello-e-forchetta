@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
+        
         int scelta;
         String nome, cognome, username, password, dataNascita, ruolo;
         Utente utente; 
@@ -41,6 +42,7 @@ public class Main {
                                 System.out.println("Login Utente");
                                 System.out.println("inserisci username");
                                 username = sc.nextLine();
+
                                 System.out.println("inserisci password");
                                 password = sc.nextLine(); 
                                 break;

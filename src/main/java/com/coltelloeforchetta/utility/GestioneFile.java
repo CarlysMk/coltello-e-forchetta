@@ -110,12 +110,12 @@ public class GestioneFile {
         return -1;
     }
 
-    public String[] getRiga(){
+    public String[] getRiga(String match, int colonna) {
         String[] righe = getAllRows();
         if (righe == null) {
             return null;
         }
-        String[] riga = righe[getRowIndex(righe[0], 0)].split("-");
+        String[] riga = righe[getRowIndex(match, colonna)].split("-");
         return riga;    
     }
 

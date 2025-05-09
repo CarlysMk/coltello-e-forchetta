@@ -40,7 +40,11 @@ public class Utente {
         } else {
             System.out.println("Login fallito");
         }
-
+        String[] dati = file.getRiga(username, 2);
+        this.nome = dati[0];
+        this.cognome = dati[1];
+        this.dataNascita = dati[4];
+        this.ruolo = dati[5];
     }
 
 

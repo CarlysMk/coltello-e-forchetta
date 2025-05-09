@@ -82,6 +82,21 @@ public class GestioneFile {
         return false;
     }  
 
+    //come il medoto cercaMatch ma restituisce il valore specifico ricercato
+    public String getMatch(String match, int colonna) {
+        String[] righe = getAllRows();
+        if (righe == null) {
+            return null;
+        }
+        for (String riga : righe) {
+            String ret = riga.split("-")[colonna];
+            if (ret.equals(match)) {
+                return ret;
+            }
+        }
+        return null;
+    }  
+
 }
 
 

@@ -1,0 +1,2 @@
+Name,Address,Location,Price,Cuisine,Longitude,Latitude,PhoneNumber,Url,WebsiteUrl,Award,GreenStar,FacilitiesAndServices,Description
+Jungsik New York,"2 Harrison St., New York, 10013, USA","New York, USA",$$$$,"Korean, Contemporary",-74.0091114,40.7187256,+12122190900,https://guide.michelin.com/en/new-york-state/new-york/restaurant/jungsik-new-york,https://www.jungsik.com/,"3 Stars",0,"Air conditioning,Interesting wine list,Wheelchair access","Cool and polished, this dining room bears that perfectly downtown nexus of low-key yet elegant"

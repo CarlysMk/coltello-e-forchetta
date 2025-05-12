@@ -10,6 +10,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
 public class GestioneFile {
     private String percorsoRelativo;
 
@@ -126,6 +129,24 @@ public class GestioneFile {
         } 
     }
 
+
+    //comandi per gestione CSV
+    public static String[] getByName(String path, String nome) throws CsvValidationException{
+        try (CSVReader reader = new CSVReader(new FileReader(path))) {
+            String[] row;
+            while ((row = reader.readNext()) != null) {
+                if (row.length > 0 && row[0].equalsIgnoreCase(nome)) {            
+                    System.out.println("Dati trovati:");
+                    for (String value : row) {
+                        System.out.println(value);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
 

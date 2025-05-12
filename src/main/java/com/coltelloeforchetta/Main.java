@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.coltelloeforchetta.models.Utente;
 import com.coltelloeforchetta.utility.GestioneFile;
+import com.opencsv.exceptions.CsvValidationException;
 
 
 public class Main {
@@ -23,6 +24,7 @@ public class Main {
                                 "\n1. Login" + 
                                 "\n2. Registrazione utente" +
                                 "\n3. Guest" +
+                                "\n4. Test" +
                                 "\n0. Esci" +
                                 "\n----------------------------------" +
                                 "\nScegli un'opzione: ");
@@ -91,6 +93,15 @@ public class Main {
                     case 3:
                         System.out.println("Accesso come Guest!");
                         break;
+
+                    case 4:
+                        try {
+                            fileUtenti.getByName("data/Ristoranti.txt", "Jungsik New York");
+                        } catch (CsvValidationException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                        
                     case 0:
                         System.out.println("Uscita dal programma...");
                         sc.close();

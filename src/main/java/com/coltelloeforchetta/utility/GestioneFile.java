@@ -126,21 +126,6 @@ public class GestioneFile {
         } 
     }
 
-    /* BCrypt bCrypt = new BCrypt();
-    public boolean temp(String password){
-        String hashedPassword = bCrypt.hashpw(password, bCrypt.gensalt());
-        System.out.println("Password hashata: " + hashedPassword);
-        System.out.println("Password da controllare: " + password);
-        System.out.println("Password da controllare: " + getMatch(password, 3));
-        if (bCrypt.checkpw(password, hashedPassword)) {
-            System.out.println("password corretta");
-            return true;
-        } else {
-            
-            System.out.println("password errata");
-            return false;
-        }
-    } */
 
 }
 

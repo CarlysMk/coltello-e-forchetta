@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import com.coltelloeforchetta.models.Utente;
 import com.coltelloeforchetta.utility.GestioneFile;
-import com.opencsv.exceptions.CsvValidationException;
 
 
 public class Main {
@@ -95,10 +94,12 @@ public class Main {
                         break;
 
                     case 4:
-                        try {
-                            fileUtenti.getByName("data/Ristoranti.txt", "Jungsik New York");
-                        } catch (CsvValidationException e) {
-                            e.printStackTrace();
+                        String [] temp = fileUtenti.getCoords("data/Ristoranti.txt", "Jungsik New York");
+                        if (temp != null) {
+                            System.out.println("Latitudine: " + temp[0]);
+                            System.out.println("Longitudine: " + temp[1]);
+                        } else {
+                            System.out.println("Coordinate non trovate");
                         }
                         break;
                         

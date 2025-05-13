@@ -136,13 +136,27 @@ public class GestioneFile {
             String[] row;
             while ((row = reader.readNext()) != null) {
                 if (row.length > 0 && row[0].equalsIgnoreCase(nome)) {            
-                    System.out.println("Dati trovati:");
-                    for (String value : row) {
-                        System.out.println(value);
-                    }
+                    return row;
                 }
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String[] getCoords(String path, String nome){
+        String [] coords = new String[2];
+        try {
+            String[] temp =  getByName(path, nome);
+            if (temp != null && temp.length >= 2) {
+                coords[0] = temp[5];
+                coords[1] = temp[6];
+                return coords;
+            } else {
+                System.out.println("Coordinate non trovate");
+            }
+        } catch (CsvValidationException e) {
             e.printStackTrace();
         }
         return null;

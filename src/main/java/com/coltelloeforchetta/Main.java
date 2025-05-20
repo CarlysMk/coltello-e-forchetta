@@ -1,5 +1,9 @@
 package com.coltelloeforchetta;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 import com.coltelloeforchetta.models.Utente;
@@ -15,6 +19,24 @@ public class Main {
         String nome, cognome, username, password, dataNascita, ruolo;
         Utente utente; 
 
+        String url = "jdbc:sqlite:coltello_e_forchetta.db";
+
+        String sql = "CREATE TABLE IF NOT EXISTS utente (\n"
+                + " username integer PRIMARY KEY,\n"
+                + " nome text NOT NULL,\n"
+                + " cognome text NOT NULL,\n"
+                + " password text NOT NULL,\n"
+                + " dataNascita text,\n"
+                + " ruolo text NOT NULL\n"
+                + ");";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+            System.out.println("Tabella 'utente' creata con successo!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 //commento con shift + option + a 
         while (true) { 

@@ -30,6 +30,30 @@ public class GestioneDB {
         }
         return false; // Se l'utente non è trovato
     }
+
+    public static void addUser(String username, String nome, String cognome, String password, String dataNascita, String ruolo) {
+        String url = "jdbc:sqlite:coltello_e_forchetta.db";
+
+        String sql = "INSERT INTO utente (username, nome, cognome, password, data_nascita, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, nome);
+            pstmt.setString(3, cognome);
+            pstmt.setString(4, password);
+            pstmt.setString(5, dataNascita != null ? dataNascita : null);
+            pstmt.setString(6, ruolo);
+
+            pstmt.executeUpdate();
+            System.out.println("Utente aggiunto con successo!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 

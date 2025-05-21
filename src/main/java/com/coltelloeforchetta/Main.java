@@ -3,6 +3,7 @@ package com.coltelloeforchetta;
 import java.util.Scanner;
 
 import com.coltelloeforchetta.models.Utente;
+import com.coltelloeforchetta.utility.GestioneDB;
 import com.coltelloeforchetta.utility.GestioneFile;
 
 
@@ -14,6 +15,7 @@ public class Main {
         int scelta;
         String nome, cognome, username, password, dataNascita, ruolo;
         Utente utente; 
+        GestioneDB db = new GestioneDB();
 
 
 //commento con shift + option + a 

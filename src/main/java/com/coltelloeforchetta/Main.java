@@ -16,7 +16,7 @@ public class Main {
         String nome, cognome, username, password, dataNascita, ruolo;
         Utente utente; 
         GestioneDB db = new GestioneDB();
-
+        
 
 //commento con shift + option + a 
         while (true) { 
@@ -96,13 +96,6 @@ public class Main {
                         break;
 
                     case 4:
-                        String [] temp = fileUtenti.getCoords("data/Ristoranti.txt", "Jungsik New York");
-                        if (temp != null) {
-                            System.out.println("Latitudine: " + temp[0]);
-                            System.out.println("Longitudine: " + temp[1]);
-                        } else {
-                            System.out.println("Coordinate non trovate");
-                        }
                         break;
                         
                     case 0:

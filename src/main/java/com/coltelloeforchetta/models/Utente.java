@@ -36,7 +36,7 @@ public class Utente {
     public Utente(String username, String psw){
         this.username = username;
         this.ClearPassword = psw;
-        if (login(username, psw)) {
+        if (db.login(username, psw)) {
             System.out.println("Login effettuato con successo");
         } else {
             System.out.println("Login fallito");
@@ -80,23 +80,6 @@ public class Utente {
     public String getRuolo(){
         return ruolo;
     }
-
-
-    private boolean login(String username, String password) {
-        if(file.cercaMatch(username, 2)){
-            System.out.println("password trovata nel database..." + file.getMatch(username, 2, 3));
-            if (BCrypt.checkpw(password, file.getMatch(username, 2, 3))) {
-                return true;
-            } else {
-                System.out.println("Password errata");
-                return false;
-            }
-        }else {
-            System.out.println("Username errato");
-            return false;
-        }
-    }
-
     
 
 }

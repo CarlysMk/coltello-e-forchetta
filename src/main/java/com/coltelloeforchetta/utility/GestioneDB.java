@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.mindrot.jbcrypt.BCrypt;
+
+
 public class GestioneDB {
     public GestioneDB() {
 
@@ -52,6 +55,26 @@ public class GestioneDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean login(String username, String password) {
+        String url = "jdbc:sqlite:coltello_e_forchetta.db";
+        String sql = "SELECT password FROM utente WHERE username = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String hashedPassword = rs.getString("password");
+                return BCrypt.checkpw(password, hashedPassword); // Verifica password hashata
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Se l'utente non esiste o la password è errata
     }
 
 }

@@ -123,6 +123,31 @@ public class GestioneDB {
         return nearbyRestaurants;
     }
 
+    public static String[] getUser(String username) {
+        String sql = "SELECT * FROM utente WHERE username = ?";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new String[]{
+                    rs.getString("username"),
+                    rs.getString("nome"),
+                    rs.getString("cognome"),
+                    rs.getString("email"),
+                    rs.getString("dataNascita"),
+                    rs.getString("ruolo")
+                };
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Se l'utente non esiste
+    }
+
 }
 
 

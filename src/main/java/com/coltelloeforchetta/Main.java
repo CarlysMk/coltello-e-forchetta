@@ -4,13 +4,11 @@ import java.util.Scanner;
 
 import com.coltelloeforchetta.models.Utente;
 import com.coltelloeforchetta.utility.GestioneDB;
-import com.coltelloeforchetta.utility.GestioneFile;
 
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        GestioneFile fileUtenti = new GestioneFile("data/Utenti.txt");
         
         int scelta;
         String nome, cognome, username, password, dataNascita, ruolo;

@@ -3,7 +3,6 @@ package com.coltelloeforchetta.models;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.coltelloeforchetta.utility.GestioneDB;
-import com.coltelloeforchetta.utility.GestioneFile;  
 
 public class Utente {
     
@@ -12,7 +11,6 @@ public class Utente {
     private String [] domicilio = new String[3];
     private String HashPsw;
     boolean boolRuolo; // TRUE per ristoratore, FALSE per utente
-    private GestioneFile file = new GestioneFile("data/Utenti.txt");
     private GestioneDB db = new GestioneDB();
 
     //costruttore per registrazione utente
@@ -41,23 +39,17 @@ public class Utente {
         } else {
             System.out.println("Login fallito");
         }
-        
-        String[] dati = file.getRiga(username, 2);
-        if (dati == null) {
-            System.out.println("Utente non trovato");
-            return;
-            
-        }else {
-            this.nome = dati[0];
-            this.cognome = dati[1];
+        String[] dati = db.getUser(username);
+            this.nome = dati[1];
+            this.cognome = dati[2];
             this.dataNascita = dati[4];
             this.ruolo = dati[5];
-            if (this.ruolo.equals("ristoratore")) {
+            if (dati[5].equals("ristoratore")) {
                 this.boolRuolo = true;
             } else if (this.ruolo.equals("utente")) {
                 this.boolRuolo = false;
             }
-        }
+        
         
         
     }

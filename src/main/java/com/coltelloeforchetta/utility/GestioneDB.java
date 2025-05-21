@@ -9,12 +9,13 @@ import org.mindrot.jbcrypt.BCrypt;
 
 
 public class GestioneDB {
+
+    static String url = "jdbc:sqlite:data/Utenti.db";
     public GestioneDB() {
 
     }
 
     public Boolean checkUsername(String toFind) {
-        String url = "jdbc:sqlite:coltello_e_forchetta.db";
         String sql = "SELECT * FROM utente WHERE username = ?";
 
         try (Connection conn = DriverManager.getConnection(url);
@@ -35,8 +36,6 @@ public class GestioneDB {
     }
 
     public static void addUser(String username, String nome, String cognome, String password, String dataNascita, String ruolo) {
-        String url = "jdbc:sqlite:coltello_e_forchetta.db";
-
         String sql = "INSERT INTO utente (username, nome, cognome, password, dataNascita, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
@@ -58,7 +57,6 @@ public class GestioneDB {
     }
 
     public static boolean login(String username, String password) {
-        String url = "jdbc:sqlite:coltello_e_forchetta.db";
         String sql = "SELECT password FROM utente WHERE username = ?";
 
         try (Connection conn = DriverManager.getConnection(url);

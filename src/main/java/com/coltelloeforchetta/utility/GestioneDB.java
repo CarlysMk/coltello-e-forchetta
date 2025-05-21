@@ -34,7 +34,7 @@ public class GestioneDB {
     public static void addUser(String username, String nome, String cognome, String password, String dataNascita, String ruolo) {
         String url = "jdbc:sqlite:coltello_e_forchetta.db";
 
-        String sql = "INSERT INTO utente (username, nome, cognome, password, data_nascita, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO utente (username, nome, cognome, password, dataNascita, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

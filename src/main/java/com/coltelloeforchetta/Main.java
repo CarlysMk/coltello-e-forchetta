@@ -58,7 +58,7 @@ public class Main {
                                 System.out.println("Inserisci username");
                                 username = sc.nextLine();
 
-                                if (fileUtenti.cercaMatch(username, 2)) {
+                                if (db.checkUsername(username)) {
                                     System.out.println("Username già esistente, riprova");
                                     break;
                                 } else {

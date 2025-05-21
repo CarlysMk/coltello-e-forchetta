@@ -2,6 +2,7 @@ package com.coltelloeforchetta.models;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.coltelloeforchetta.utility.GestioneDB;
 import com.coltelloeforchetta.utility.GestioneFile;  
 
 public class Utente {
@@ -12,6 +13,7 @@ public class Utente {
     private String HashPsw;
     boolean boolRuolo; // TRUE per ristoratore, FALSE per utente
     private GestioneFile file = new GestioneFile("data/Utenti.txt");
+    private GestioneDB db = new GestioneDB();
 
     //costruttore per registrazione utente
     public Utente(String nome, String cognome, String username, String psw, String dataNascita, String ruolo) {
@@ -27,8 +29,7 @@ public class Utente {
             this.boolRuolo = false;
         }
         HashPsw = BCrypt.hashpw(psw, BCrypt.gensalt());
-        file.scriviSuFile(nome + "-" + cognome + "-" + username + "-" + HashPsw + "-" + dataNascita + "-" + ruolo, true);
-
+        db.addUser(username, nome, cognome, HashPsw, dataNascita, ruolo);
     }
 
     //costruttore per login utente

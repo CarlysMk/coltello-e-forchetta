@@ -141,8 +141,86 @@ public class queryExecutor {
         }
     }
 
-    // ---INSERT QUERY---   
+    
+    // ---POPULATE QUERY---   
 
+
+    /**
+     * Popola la tabella UtentiRegistrati usando il contenuto di un file CSV
+     * @param conn connessione al database
+     * @param file file contenente i dati che verranno inseriti nel database. 
+     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
+     * "username", "nome", "cognome", "nascita", "domicilio", "password", "ruolo" in questo preciso ordine
+     */
+    public void populateUtentiRegistratiByCSV(Connection conn, String file){
+        // TODO
+    }
+
+    /**
+     * Popola la tabella Ristoranti usando il contenuto di un file CSV
+     * @param conn connessione al database
+     * @param file file contenente i dati che verranno inseriti nel database. 
+     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
+     * "nome", "nazione", "citta", "indirizzo", "latitudine", "longitudine", "fascia", "delivery",
+     * "prenotazione", "proprietario" in questo preciso ordine
+     */
+    public void populateRistorantiByCSV(Connection conn, String file){
+        // TODO
+    }
+
+    /**
+     * Popola la tabella CategorieCucine usando il contenuto di un file CSV
+     * @param conn connessione al database
+     * @param file file contenente i dati che verranno inseriti nel database. 
+     * Il file deve utilizzare come separatore il carattere "," e deve contenere la colonna "nomeCategoria"
+     */
+    public void populateCategorieCucineByCSV(Connection conn, String file){
+        // TODO
+    }
+
+    /**
+     * Popola la tabella Recensioni usando il contenuto di un file CSV
+     * @param conn connessione al database
+     * @param file file contenente i dati che verranno inseriti nel database. 
+     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
+     * "usernameCliente", "IDRistorante", "stelle", "commento", "risposta" in questo preciso ordine
+     */    
+    public void populateRecensioniByCSV(Connection conn, String file){
+        // TODO
+    }
+
+    /**
+     * Popola la tabella SpecializzazioniRistorante usando il contenuto di un file CSV
+     * @param conn connessione al database
+     * @param file file contenente i dati che verranno inseriti nel database. 
+     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
+     * "categoria", "IDRistorante" in questo preciso ordine
+     */   
+    public void populateSpecializzazioniRistoranteByCSV(Connection conn, String file){
+        // TODO
+    }
+
+
+    /**
+     * Popola la tabella RistorantiPreferiti usando il contenuto di un file CSV
+     * @param conn connessione al database
+     * @param file file contenente i dati che verranno inseriti nel database. 
+     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
+     * "usernameCliente", "IDRistorante" in questo preciso ordine
+     */   
+    public void populateRistorantiPreferitiByCSV(Connection conn, String file){
+        // TODO
+    }
+
+    
+
+    
+
+    
+
+    
+
+    // TODO rimuovere DOPO
     // TODO modificare insert
     // TODO per ricordare: questo metodo va bene
     /**
@@ -226,6 +304,8 @@ public class queryExecutor {
     }
 
     // TODO fare insert per tutte le tabelle
+
+    // ---INSERT QUERY---
 
     // ---SELECT QUERY---
 

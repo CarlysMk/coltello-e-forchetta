@@ -8,6 +8,10 @@
 
 package com.coltelloeforchetta.server;
 
+import com.coltelloeforchetta.server.database.DBConnection;
+
 public class serverTK {
-    // TODO
+    DBConnection db = new DBConnection();
+
+    // TODO fare parte di RMI
 }

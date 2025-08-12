@@ -134,6 +134,9 @@ public class DBConnection {
 
 
             // TODO aggiungere i popolamenti per tutte le tabelle
+            // fare metodo populateDB contenente i singoli metodi per popolare le tabelle
+
+
             //popolamento tabella libri
 
             qexe.populateLibriByCSV(db_conn,"src\\main\\java\\com\\example\\sql_statement\\BooksDatasetClean.csv",100);

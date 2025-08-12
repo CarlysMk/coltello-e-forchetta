@@ -1,0 +1,4 @@
+nome,nazione,citta,indirizzo,latitudine,longitudine,fascia,delivery,prenotazione,proprietario
+Enoteca Mazzi,Italia,Firenze,Via Ghibellina 87,11.2621974,43.770066,40,FALSE,TRUE,AnMazzi
+Osteria Expanificio,Italia,Agrigento,Piazza Sinatra 16,13.5763684,37.3108491,20.50,TRUE,TRUE,IlaPa
+Da Fausto,Italia,Brusaporto,Via Cantalupa 17,9.7692511,45.6756778,30,TRUE,FALSE,FaustoLomb97

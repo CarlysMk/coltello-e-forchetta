@@ -1,3 +1,11 @@
+/**************************************
+ * Matricola    Cognome     Nome
+ * 755152       Paredi      Giacomo
+ *              
+ * Sede: Como
+***************************************/
+// TODO aggiungere le matricole di tutti
+
 package com.coltelloeforchetta.common;
 
 public class recensione {

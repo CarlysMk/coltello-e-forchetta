@@ -105,19 +105,12 @@ public class DBConnection {
             db_exists = qexe.checkDBExists(tempconn, db_name);
             System.out.println("Esitenza: " + db_exists);
 
-            // vecchio codice
-            /*
-            if(!db_exists){
-                qexe.createDB(tempconn, db_name);
-            }*/
-
             // creazione DB
 
             
 
             if(!db_exists){
                 try {
-                    // TODO cambiare path
                     qexe.createBDByFile(tempconn, new FileReader("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createDB.sql"));
                 } catch (FileNotFoundException e) {
                     // TODO Auto-generated catch block
@@ -133,22 +126,16 @@ public class DBConnection {
             System.out.println("Connessione al database " + db_url + db_name +"\nNome: " + username + "\nPassword : " + password);
             db_conn = DriverManager.getConnection(db_url + db_name, username, password);
 
-            // vecchio codice
-            /*
-            if(!db_exists){
-                qexe.createTables(db_conn);
-            }*/
-
             // creazioni tabelle
 
             if(!db_exists){        
-                // TODO cambiare path 
                 qexe.createTablesByFile(db_conn,"src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createTables.sql");
             }
 
+
+            // TODO aggiungere i popolamenti per tutte le tabelle
             //popolamento tabella libri
 
-            // TODO cambiare path
             qexe.populateLibriByCSV(db_conn,"src\\main\\java\\com\\example\\sql_statement\\BooksDatasetClean.csv",100);
 
             

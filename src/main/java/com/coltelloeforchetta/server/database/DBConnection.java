@@ -113,10 +113,12 @@ public class DBConnection {
 
             // creazione DB
 
+            
+
             if(!db_exists){
                 try {
                     // TODO cambiare path
-                    qexe.createBDByFile(tempconn, new FileReader("src\\main\\java\\com\\example\\database\\createDB.sql"));
+                    qexe.createBDByFile(tempconn, new FileReader("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createDB.sql"));
                 } catch (FileNotFoundException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -141,7 +143,7 @@ public class DBConnection {
 
             if(!db_exists){        
                 // TODO cambiare path 
-                qexe.createTablesByFile(db_conn,"src\\main\\java\\com\\example\\database\\createTables.sql");
+                qexe.createTablesByFile(db_conn,"src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createTables.sql");
             }
 
             //popolamento tabella libri

@@ -162,7 +162,6 @@ public class queryExecutor {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             String query = "INSERT INTO UtentiRegistrati (Username,NomeUtente,CognomeUtente,DataNascita,Domicilio,Password,Ruolo) VALUES (?,?,?,?,?,?,?)";
-            int cont = 0;
 
             //leggo intestazione del file csv
             line = reader.readLine();
@@ -179,7 +178,11 @@ public class queryExecutor {
                 //CognomeUtente
                 stmt.setString(3, valori[2]);
                 //DataNascita
-                stmt.setDate(4, new Date(LocalDateTime.parse(valori[3].replace(" " , "T").replace("/" , "-")).atZone(ZoneId.of("Europe/Oslo")).toInstant().toEpochMilli()));
+                if(valori[3].equals("")){
+                    stmt.setDate(4,null);
+                }else{
+                    stmt.setDate(4, new Date(LocalDateTime.parse(valori[3].replace(" " , "T").replace("/" , "-")).atZone(ZoneId.of("Europe/Oslo")).toInstant().toEpochMilli()));
+                }
                 //Domicilio
                 stmt.setString(5, valori[4]);
                 //Password
@@ -193,6 +196,78 @@ public class queryExecutor {
                 }else{
                     stmt.setBoolean(7, false);
                 }
+            }
+
+            if(stmt!=null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Popola la tabella Ristoranti usando il contenuto di un file CSV
+     * @param conn connessione al database
+     * @param file file contenente i dati che verranno inseriti nel database. 
+     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
+     * "nome", "nazione", "citta", "indirizzo", "latitudine", "longitudine", "fascia", "delivery",
+     * "prenotazione", "proprietario" in questo preciso ordine
+     */
+    public void populateRistorantiByCSV(Connection conn, String file){
+        try {
+            //String CSVSplit = ",";
+            String CSVSplit = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            String query = "INSERT INTO UtentiRegistrati (NomeRistorante,Nazione,Citta,Indirizzo,Latitudine,Longitudine,FasciaPrezzo,Delivery,PrenotazioneOnline,UsernameProprietario) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
+            //leggo intestazione del file csv
+            line = reader.readLine();
+
+            PreparedStatement stmt = null;
+            stmt = conn.prepareStatement(query);
+            while((line = reader.readLine()) != null ){
+                String[] valori = line.split(CSVSplit);
+
+                //NomeRistorante
+                stmt.setString(1, valori[0]);
+                //Nazione
+                stmt.setString(2, valori[1]);                
+                //Citta
+                stmt.setString(3, valori[2]);                
+                //Indirizzo
+                stmt.setString(4, valori[3]); 
+                //Latitudine
+                stmt.setFloat(5, Float.valueOf(valori[4]));
+                //Longitudine
+                stmt.setFloat(6, Float.valueOf(valori[5]));
+                //FasciaPrezzo
+                stmt.setFloat(7, Float.valueOf(valori[6]));
+                //Delivery
+                if(valori[7].equals("TRUE")){
+                    stmt.setBoolean(8, true);
+                }else{
+                    stmt.setBoolean(8, false);
+                }
+                //PrenotazioneOnline
+                if(valori[8].equals("TRUE")){
+                    stmt.setBoolean(9, true);
+                }else{
+                    stmt.setBoolean(9, false);
+                }
+                //UsernameProprietario
+                stmt.setString(10, valori[9]);                
                 
 
                 // TODO cancellare
@@ -221,19 +296,6 @@ public class queryExecutor {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-    }
-
-    /**
-     * Popola la tabella Ristoranti usando il contenuto di un file CSV
-     * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
-     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
-     * "nome", "nazione", "citta", "indirizzo", "latitudine", "longitudine", "fascia", "delivery",
-     * "prenotazione", "proprietario" in questo preciso ordine
-     */
-    public void populateRistorantiByCSV(Connection conn, String file){
-        // TODO
     }
 
     /**

@@ -159,7 +159,7 @@ public class DBConnection {
     
     private void populateDB(queryExecutor qexe){
         qexe.populateUtentiRegistratiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\utentiRegistrati.csv");
-        qexe.populateRistorantiByCSV(conn, );
+        qexe.populateRistorantiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\ristoranti.csv");
         qexe.populateCategorieCucineByCSV(conn, );
         qexe.populateRecensioniByCSV(conn, );
         qexe.populateSpecializzazioniRistoranteByCSV(conn, );

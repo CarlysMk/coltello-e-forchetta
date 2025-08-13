@@ -106,9 +106,6 @@ public class DBConnection {
             System.out.println("Esitenza: " + db_exists);
 
             // creazione DB
-
-            
-
             if(!db_exists){
                 try {
                     qexe.createBDByFile(tempconn, new FileReader("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createDB.sql"));
@@ -130,20 +127,8 @@ public class DBConnection {
 
             if(!db_exists){        
                 qexe.createTablesByFile(db_conn,"src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createTables.sql");
-                populateDB(qexe);
-            }
-
-
-            // TODO aggiungere i popolamenti per tutte le tabelle
-            // fare metodo populateDB contenente i singoli metodi per popolare le tabelle
-
-
-            //popolamento tabella libri
-
-            qexe.populateLibriByCSV(db_conn,"src\\main\\java\\com\\example\\sql_statement\\BooksDatasetClean.csv",100);
-
-            
-
+                populateDB(db_conn, qexe);
+            }            
         } catch (SQLException e) {
             System.err.println("SQLState:"+ e.getSQLState());
 		    System.err.println("Error code:"+ e.getErrorCode());
@@ -157,13 +142,13 @@ public class DBConnection {
         return this.conn;
     }
     
-    private void populateDB(queryExecutor qexe){
-        qexe.populateUtentiRegistratiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\utentiRegistrati.csv");
-        qexe.populateRistorantiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\ristoranti.csv");
-        qexe.populateCategorieCucineByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\categorieCucine.csv");
-        qexe.populateRecensioniByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\recensioni.csv");
-        qexe.populateSpecializzazioniRistoranteByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\specializzazioniRistoranti.csv");
-        qexe.populateRistorantiPreferitiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\ristorantiPreferiti.csv");
+    private void populateDB(Connection db_exist, queryExecutor qexe){
+        qexe.populateUtentiRegistratiByCSV(db_exist, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\utentiRegistrati.csv");
+        qexe.populateRistorantiByCSV(db_exist, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\ristoranti.csv");
+        qexe.populateCategorieCucineByCSV(db_exist, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\categorieCucine.csv");
+        qexe.populateRecensioniByCSV(db_exist, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\recensioni.csv");
+        qexe.populateSpecializzazioniRistoranteByCSV(db_exist, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\specializzazioniRistoranti.csv");
+        qexe.populateRistorantiPreferitiByCSV(db_exist, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\ristorantiPreferiti.csv");
     }
     
 }

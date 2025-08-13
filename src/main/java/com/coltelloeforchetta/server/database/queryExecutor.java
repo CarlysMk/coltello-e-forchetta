@@ -230,7 +230,7 @@ public class queryExecutor {
             String CSVSplit = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
-            String query = "INSERT INTO Ristoranti (NomeRistorante,Nazione,Citta,Indirizzo,Latitudine,Longitudine,FasciaPrezzo,Delivery,PrenotazioneOnline,UsernameProprietario) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO Ristoranti (NomeRistorante,Nazione,Citta,Indirizzo,Latitudine,Longitudine,FasciaPrezzo,Delivery,PrenotazioneOnline,UsernameProprietario) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
             //leggo intestazione del file csv
             line = reader.readLine();
@@ -312,15 +312,6 @@ public class queryExecutor {
 
                 //NomeCategoria
                 stmt.setString(1, valori[0]);       
-
-                // TODO cancellare
-                /*
-                stmt.setString(1, valori[indexOfTitolo]);
-                //autore
-                stmt.setString(2, valori[indexOfAutore]);
-                //anno di pubblicazione
-                stmt.setInt(3, Integer.parseInt(valori[indexOfAnnoPubblicazione]));
-                */
             }
 
             if(stmt!=null){
@@ -349,7 +340,58 @@ public class queryExecutor {
      * "usernameCliente", "IDRistorante", "stelle", "commento", "risposta" in questo preciso ordine
      */    
     public void populateRecensioniByCSV(Connection conn, String file){
-        // TODO
+        try {
+            //String CSVSplit = ",";
+            String CSVSplit = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            String query = "INSERT INTO Recensioni (UsernameCliente,IDRistorante,Stelle,Commento,Rispota) VALUES (?,?,?,?,?)";
+
+            //leggo intestazione del file csv
+            line = reader.readLine();
+
+            PreparedStatement stmt = null;
+            stmt = conn.prepareStatement(query);
+            while((line = reader.readLine()) != null ){
+                String[] valori = line.split(CSVSplit);
+
+                //UsernameCliente
+                stmt.setString(1, valori[0]);
+                //IDRistorante
+                stmt.setInt(2, Integer.parseInt(valori[1]));                
+                //Stelle
+                stmt.setInt(3, Integer.parseInt(valori[2]));                
+                //Commento
+                stmt.setString(4, valori[3]); 
+                //Risposta
+                stmt.setString(5, valori[4]);
+
+                // TODO cancellare
+                /*
+                stmt.setString(1, valori[indexOfTitolo]);
+                //autore
+                stmt.setString(2, valori[indexOfAutore]);
+                //anno di pubblicazione
+                stmt.setInt(3, Integer.parseInt(valori[indexOfAnnoPubblicazione]));
+                */
+            }
+
+            if(stmt!=null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**

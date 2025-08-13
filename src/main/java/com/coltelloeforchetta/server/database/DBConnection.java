@@ -161,7 +161,7 @@ public class DBConnection {
         qexe.populateUtentiRegistratiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\utentiRegistrati.csv");
         qexe.populateRistorantiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\ristoranti.csv");
         qexe.populateCategorieCucineByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\categorieCucine.csv");
-        qexe.populateRecensioniByCSV(conn, );
+        qexe.populateRecensioniByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\recensioni.csv");
         qexe.populateSpecializzazioniRistoranteByCSV(conn, );
         qexe.populateRistorantiPreferitiByCSV(conn, );
     }

@@ -130,6 +130,7 @@ public class DBConnection {
 
             if(!db_exists){        
                 qexe.createTablesByFile(db_conn,"src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createTables.sql");
+                populateDB(qexe);
             }
 
 
@@ -154,6 +155,15 @@ public class DBConnection {
 
     public Connection getConnection(){
         return this.conn;
-    }  
+    }
+    
+    private void populateDB(queryExecutor qexe){
+        qexe.populateUtentiRegistratiByCSV(conn, "src\\main\\java\\com\\coltelloeforchetta\\server\\database\\populate_examples\\utentiRegistrati.csv");
+        qexe.populateRistorantiByCSV(conn, );
+        qexe.populateCategorieCucineByCSV(conn, );
+        qexe.populateRecensioniByCSV(conn, );
+        qexe.populateSpecializzazioniRistoranteByCSV(conn, );
+        qexe.populateRistorantiPreferitiByCSV(conn, );
+    }
     
 }

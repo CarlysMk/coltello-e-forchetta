@@ -13,11 +13,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -153,7 +156,72 @@ public class queryExecutor {
      * "username", "nome", "cognome", "nascita", "domicilio", "password", "ruolo" in questo preciso ordine
      */
     public void populateUtentiRegistratiByCSV(Connection conn, String file){
-        // TODO
+        try {
+            //String CSVSplit = ",";
+            String CSVSplit = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            String query = "INSERT INTO UtentiRegistrati (Username,NomeUtente,CognomeUtente,DataNascita,Domicilio,Password,Ruolo) VALUES (?,?,?,?,?,?,?)";
+            int cont = 0;
+
+            //leggo intestazione del file csv
+            line = reader.readLine();
+
+            PreparedStatement stmt = null;
+            stmt = conn.prepareStatement(query);
+            while((line = reader.readLine()) != null ){
+                String[] valori = line.split(CSVSplit);
+
+                //Username
+                stmt.setString(1, valori[0]);
+                //NomeUtente
+                stmt.setString(2, valori[1]);                
+                //CognomeUtente
+                stmt.setString(3, valori[2]);
+                //DataNascita
+                stmt.setDate(4, new Date(LocalDateTime.parse(valori[3].replace(" " , "T").replace("/" , "-")).atZone(ZoneId.of("Europe/Oslo")).toInstant().toEpochMilli()));
+                //Domicilio
+                stmt.setString(5, valori[4]);
+                //Password
+                // TODO cifrare la password prima di fare l'insert
+                String password = valori[5];
+                // password = metodo_per_cifrare();
+                stmt.setString(6, password);
+                //Ruolo
+                if(valori[6].equals("TRUE")){
+                    stmt.setBoolean(7, true);
+                }else{
+                    stmt.setBoolean(7, false);
+                }
+                
+
+                // TODO cancellare
+                /*
+                stmt.setString(1, valori[indexOfTitolo]);
+                //autore
+                stmt.setString(2, valori[indexOfAutore]);
+                //anno di pubblicazione
+                stmt.setInt(3, Integer.parseInt(valori[indexOfAnnoPubblicazione]));
+                */
+            }
+
+            if(stmt!=null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     /**

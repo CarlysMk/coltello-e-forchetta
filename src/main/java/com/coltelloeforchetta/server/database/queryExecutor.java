@@ -151,7 +151,7 @@ public class queryExecutor {
     /**
      * Popola la tabella UtentiRegistrati usando il contenuto di un file CSV
      * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
+     * @param file percorso al file contenente i dati che verranno inseriti nel database. 
      * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
      * "username", "nome", "cognome", "nascita", "domicilio", "password", "ruolo" in questo preciso ordine
      */
@@ -219,7 +219,7 @@ public class queryExecutor {
     /**
      * Popola la tabella Ristoranti usando il contenuto di un file CSV
      * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
+     * @param file percorso al file contenente i dati che verranno inseriti nel database. 
      * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
      * "nome", "nazione", "citta", "indirizzo", "latitudine", "longitudine", "fascia", "delivery",
      * "prenotazione", "proprietario" in questo preciso ordine
@@ -301,7 +301,7 @@ public class queryExecutor {
     /**
      * Popola la tabella CategorieCucine usando il contenuto di un file CSV
      * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
+     * @param file percorso al file contenente i dati che verranno inseriti nel database. 
      * Il file deve utilizzare come separatore il carattere "," e deve contenere la colonna "nomeCategoria"
      */
     public void populateCategorieCucineByCSV(Connection conn, String file){
@@ -311,7 +311,7 @@ public class queryExecutor {
     /**
      * Popola la tabella Recensioni usando il contenuto di un file CSV
      * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
+     * @param file percorso al file contenente i dati che verranno inseriti nel database. 
      * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
      * "usernameCliente", "IDRistorante", "stelle", "commento", "risposta" in questo preciso ordine
      */    
@@ -322,7 +322,7 @@ public class queryExecutor {
     /**
      * Popola la tabella SpecializzazioniRistorante usando il contenuto di un file CSV
      * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
+     * @param file percorso al file contenente i dati che verranno inseriti nel database. 
      * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
      * "categoria", "IDRistorante" in questo preciso ordine
      */   
@@ -334,7 +334,7 @@ public class queryExecutor {
     /**
      * Popola la tabella RistorantiPreferiti usando il contenuto di un file CSV
      * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
+     * @param file percorso al file contenente i dati che verranno inseriti nel database. 
      * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
      * "usernameCliente", "IDRistorante" in questo preciso ordine
      */   

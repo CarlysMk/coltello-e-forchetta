@@ -19,8 +19,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -181,7 +185,7 @@ public class queryExecutor {
                 if(valori[3].equals("")){
                     stmt.setDate(4,null);
                 }else{
-                    stmt.setDate(4, new Date(LocalDateTime.parse(valori[3].replace(" " , "T").replace("/" , "-")).atZone(ZoneId.of("Europe/Oslo")).toInstant().toEpochMilli()));
+                    stmt.setDate(4, new Date(StringToMillisec(valori[3])));
                 }
                 //Domicilio
                 stmt.setString(5, valori[4]);
@@ -196,6 +200,8 @@ public class queryExecutor {
                 }else{
                     stmt.setBoolean(7, false);
                 }
+
+                stmt.executeUpdate();
             }
 
             if(stmt!=null){
@@ -214,6 +220,18 @@ public class queryExecutor {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    private long StringToMillisec(String date){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date newDate = null;
+        try {
+            newDate = sdf.parse(date);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return newDate.getTime();
     }
 
     /**
@@ -267,7 +285,9 @@ public class queryExecutor {
                     stmt.setBoolean(9, false);
                 }
                 //UsernameProprietario
-                stmt.setString(10, valori[9]);                
+                stmt.setString(10, valori[9]);   
+                
+                stmt.executeUpdate();
             }
 
             if(stmt!=null){
@@ -311,7 +331,9 @@ public class queryExecutor {
                 String[] valori = line.split(CSVSplit);
 
                 //NomeCategoria
-                stmt.setString(1, valori[0]);       
+                stmt.setString(1, valori[0]);  
+                
+                stmt.executeUpdate();
             }
 
             if(stmt!=null){
@@ -365,6 +387,8 @@ public class queryExecutor {
                 stmt.setString(4, valori[3]); 
                 //Risposta
                 stmt.setString(5, valori[4]);
+
+                stmt.executeUpdate();
             }
 
             if(stmt!=null){
@@ -411,7 +435,9 @@ public class queryExecutor {
                 //Categoria
                 stmt.setString(1, valori[0]);
                 //IDRistorante
-                stmt.setInt(2, Integer.parseInt(valori[1]));                
+                stmt.setInt(2, Integer.parseInt(valori[1]));  
+                
+                stmt.executeUpdate();
             }
 
             if(stmt!=null){
@@ -459,7 +485,9 @@ public class queryExecutor {
                 //UsernameCliente
                 stmt.setString(1, valori[0]);
                 //IDRistorante
-                stmt.setInt(2, Integer.parseInt(valori[1]));                
+                stmt.setInt(2, Integer.parseInt(valori[1]));  
+                
+                stmt.executeUpdate();
             }
 
             if(stmt!=null){

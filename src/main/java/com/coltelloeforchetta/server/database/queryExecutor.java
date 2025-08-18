@@ -367,7 +367,7 @@ public class queryExecutor {
             String CSVSplit = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
-            String query = "INSERT INTO Recensioni (UsernameCliente,IDRistorante,Stelle,Commento,Rispota) VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO Recensioni (UsernameCliente,IDRistorante,Stelle,Commento,Risposta) VALUES (?,?,?,?,?)";
 
             //leggo intestazione del file csv
             line = reader.readLine();

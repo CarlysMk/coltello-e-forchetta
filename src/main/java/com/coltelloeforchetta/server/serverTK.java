@@ -11,7 +11,11 @@ package com.coltelloeforchetta.server;
 import com.coltelloeforchetta.server.database.DBConnection;
 
 public class serverTK {
-    DBConnection db = new DBConnection();
+
+    public static void main(String[] args) {
+        DBConnection db = new DBConnection();
+    }
+    
 
     // TODO fare parte di RMI
 }

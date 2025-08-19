@@ -85,7 +85,7 @@ public class Main {
 
                                 utente = new utente(nome, cognome, username, password, dataNascita, ruolo);
                                 System.out.println("Registrazione completata!");
-                                System.out.println("Benvenuto " + utente.getUsername());
+                                System.out.println("Benvenuto ");
                                 System.out.println("Effettua nuovamente il login dalla tab di inizio");
                                 break;
                             

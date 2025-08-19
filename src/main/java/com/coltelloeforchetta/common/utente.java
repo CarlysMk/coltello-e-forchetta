@@ -47,6 +47,72 @@ public class utente {
         //TODO ottenere i dati completi dal DB e popolare i dati locali
     }
 
-    
+    public class Utente {
+        private String nomeUtente, cognomeUtente, username, ClearPassword, dataNascita, ruolo;
+        private String[] domicilio = new String[3];
+
+        // Getter e Setter per nomeUtente
+        public String getNomeUtente() {
+            return nomeUtente;
+        }
+
+        public void setNomeUtente(String nomeUtente) {
+            this.nomeUtente = nomeUtente;
+        }
+
+        // Getter e Setter per cognomeUtente
+        public String getCognomeUtente() {
+            return cognomeUtente;
+        }
+
+        public void setCognomeUtente(String cognomeUtente) {
+            this.cognomeUtente = cognomeUtente;
+        }
+
+        // Getter e Setter per username
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        // Getter e Setter per ClearPassword
+        public String getClearPassword() {
+            return ClearPassword;
+        }
+
+        public void setClearPassword(String clearPassword) {
+            this.ClearPassword = clearPassword;
+        }
+
+        // Getter e Setter per dataNascita
+        public String getDataNascita() {
+            return dataNascita;
+        }
+
+        public void setDataNascita(String dataNascita) {
+            this.dataNascita = dataNascita;
+        }
+
+        // Getter e Setter per ruolo
+        public String getRuolo() {
+            return ruolo;
+        }
+
+        public void setRuolo(String ruolo) {
+            this.ruolo = ruolo;
+        }
+
+        // Getter e Setter per domicilio
+        public String[] getDomicilio() {
+            return domicilio;
+        }
+
+        public void setDomicilio(String[] domicilio) {
+            this.domicilio = domicilio;
+        }
+    }
 
 }

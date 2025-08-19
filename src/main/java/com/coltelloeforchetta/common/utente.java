@@ -8,9 +8,6 @@
 
 package com.coltelloeforchetta.common;
 
-import com.coltelloeforchetta.utility.GestioneDB;
-import org.mindrot.jbcrypt.BCrypt;
-
 public class utente {
 
     private String nomeUtente, cognomeUtente, username, ClearPassword, dataNascita, ruolo;
@@ -31,8 +28,8 @@ public class utente {
         } else if (this.ruolo.equals("utente")) {
             this.boolRuolo = false;
         }
-        HashPsw = BCrypt.hashpw(psw, BCrypt.gensalt());
         //TODO registrare nel DB il nuovo utente
+        //ricordarsi di cifrare la psw prima di caricarla nel DB
     }
 
     //costruttore per LOGIN utente
@@ -49,4 +46,7 @@ public class utente {
 
         //TODO ottenere i dati completi dal DB e popolare i dati locali
     }
+
+    
+
 }

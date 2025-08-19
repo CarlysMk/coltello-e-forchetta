@@ -2,7 +2,7 @@ package com.coltelloeforchetta;
 
 import java.util.Scanner;
 
-import com.coltelloeforchetta.models.Utente;
+import com.coltelloeforchetta.common.utente;
 import com.coltelloeforchetta.utility.GestioneDB;
 
 
@@ -12,7 +12,7 @@ public class Main {
         
         int scelta;
         String nome, cognome, username, password, dataNascita, ruolo;
-        Utente utente; 
+        utente utente;
         GestioneDB db = new GestioneDB();
         
 
@@ -42,7 +42,7 @@ public class Main {
                         System.out.println("inserisci password");
                         password = sc.nextLine(); 
 
-                        utente = new Utente(username, password);
+                        utente = new utente(username, password);
 
                         break;
                         
@@ -83,7 +83,7 @@ public class Main {
                                         continue;
                                 }
 
-                                utente = new Utente(nome, cognome, username, password, dataNascita, ruolo);
+                                utente = new utente(nome, cognome, username, password, dataNascita, ruolo);
                                 System.out.println("Registrazione completata!");
                                 System.out.println("Benvenuto " + utente.getUsername());
                                 System.out.println("Effettua nuovamente il login dalla tab di inizio");

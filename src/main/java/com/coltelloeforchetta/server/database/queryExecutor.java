@@ -105,39 +105,6 @@ public class queryExecutor {
         }
     }
 
-    // TODO rimuovere?
-    /**
-     * Crea il database senza tabelle usando come input un file.
-     * @param conn connessione al database Postgres generico.
-     * @param file file contenente il codice sql usato per la creazione del database.
-     */
-    public void createBDByFile(Connection conn, FileReader file){
-
-        System.out.println("Database inesistente\nCreazione di un nuovo database");
-
-        try {
-            BufferedReader reader = new BufferedReader(file);
-            String line;
-            StringBuilder sb = new StringBuilder();
-            String query;
-
-            while((line = reader.readLine()) != null){
-                sb.append(line);
-            }
-
-            query = sb.toString();
-
-            genericDDLquery(conn, query);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Errore nella lettura del file");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Errore nella creazione del database");
-        }
-    }
-
     /**
      * Crea le tabelle del database usando come input un file.
      * @param conn connessione al database.

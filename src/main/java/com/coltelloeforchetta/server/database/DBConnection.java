@@ -84,7 +84,6 @@ public class DBConnection {
             e.printStackTrace();
             System.out.println("Errore nella lettura del file");
         } 
-
     }
 
     private void accessoManuale(){
@@ -118,7 +117,6 @@ public class DBConnection {
     }
 
     private void creaCredenzialiFile(){
-        
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\Credenziali.txt"));
             writer.append(db_url);
@@ -134,8 +132,6 @@ public class DBConnection {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-
     }
 
     /**
@@ -179,20 +175,6 @@ public class DBConnection {
             db_exists = qexe.checkDBExists(tempconn, db_name);
             System.out.println("Esitenza: " + db_exists);
 
-
-            // TODO rimuovere
-            // creazione DB
-            /*
-            if(!db_exists){
-                try {
-                    qexe.createBDByFile(tempconn, new FileReader("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createDB.sql"));
-                } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                    System.out.println("File non trovato");
-                }
-            }*/
-
             // creazione DB
             if(!db_exists){
                 
@@ -207,7 +189,6 @@ public class DBConnection {
             db_conn = DriverManager.getConnection(db_url + db_name, username, password);
 
             // creazioni tabelle
-
             if(!db_exists){        
                 qexe.createTablesByFile(db_conn,"src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createTables.sql");
                 populateDB(db_conn, qexe);

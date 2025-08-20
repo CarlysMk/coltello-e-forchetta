@@ -86,6 +86,26 @@ public class queryExecutor {
         }
     }
 
+
+    /**
+     * Crea il database senza tabelle
+     * @param conn connessione al database Postgres generico.
+     * @param dbName nome del database.
+     */
+    public void createDB(Connection conn, String dbName){
+        String createDB = "CREATE DATABASE " + dbName;
+
+        System.out.println("Database inesistente\nCreazione di un nuovo database");
+
+        try {
+            genericDDLquery(conn, createDB);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Errore nella creazione del database");
+        }
+    }
+
+    // TODO rimuovere?
     /**
      * Crea il database senza tabelle usando come input un file.
      * @param conn connessione al database Postgres generico.

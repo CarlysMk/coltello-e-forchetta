@@ -8,8 +8,13 @@
 
 package com.coltelloeforchetta.server.database;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -45,23 +50,80 @@ public class DBConnection {
      * Richiede l'inserimento delle credenziali
      */
     public void inserireCredenziali() {
+        String accessoRapido;
         try (Scanner in = new Scanner(System.in)) {
-            //System.out.print("Inserire url del database: ");
-            //db_url = in.nextLine();
-            db_url = "jdbc:postgresql://localhost:5432/";
-
-            //System.out.print("Inserire nome del database: ");
-            //db_name = in.nextLine();
-            db_name = "the_knife_db";
-
-            //System.out.print("Inserire username: ");
-            //username = in.nextLine();
-            username = "postgres";
-
-            //System.out.print("Inserire password: ");
-            //password = in.nextLine();
-            password = "root";
+            System.out.println("ACCESSO AL DATABASE");
+            File credenziali = new File("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\Credenziali.txt");
+            if(credenziali.exists() && !credenziali.isDirectory()){
+                System.out.print("File 'Credenziali.txt' trovato.\nDigitare 'si' per accedere usando le informazioni contenute nel file, altro per inserire le credenziali manualmente: ");
+                accessoRapido = in.nextLine();
+                accessoRapido = accessoRapido.toLowerCase();
+                if(accessoRapido.equals("si")){
+                    accessoConFile(credenziali.getPath());
+                }else{
+                    accessoManuale();
+                }
+            }else{
+                accessoManuale();
+            }
         }
+    }
+
+    private void accessoConFile(String path){
+        System.out.println(path);
+        // TODO
+
+    }
+
+    private void accessoManuale(){
+        String salvareFile;
+        try (Scanner in = new Scanner(System.in)){
+
+            System.out.println("INSERIRE LE CREDENZIALI DEL DATABASE");
+            System.out.print("Inserire url del database: ");
+            db_url = in.nextLine();
+            //db_url = "jdbc:postgresql://localhost:5432/";
+
+            System.out.print("Inserire nome del database: ");
+            db_name = in.nextLine();
+            //db_name = "the_knife_db";
+
+            System.out.print("Inserire username: ");
+            username = in.nextLine();
+            //username = "postgres";
+
+            System.out.print("Inserire password: ");
+            password = in.nextLine();
+            //password = "root";
+
+            System.out.print("Digitare 'si' per salvare le credenziali inserite e accedere rapidamente le volte successive: ");
+            salvareFile = in.nextLine();
+            salvareFile.toLowerCase();
+            if(salvareFile.equals("si")){
+                creaCredenzialiFile();
+            }
+        }
+    }
+
+    private void creaCredenzialiFile(){
+        
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\Credenziali.txt"));
+            writer.append(db_url);
+            writer.newLine();
+            writer.append(db_name);
+            writer.newLine();
+            writer.append(username);
+            writer.newLine();
+            writer.append(password);
+
+            writer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+
     }
 
     /**
@@ -105,7 +167,10 @@ public class DBConnection {
             db_exists = qexe.checkDBExists(tempconn, db_name);
             System.out.println("Esitenza: " + db_exists);
 
+
+            // TODO rimuovere
             // creazione DB
+            /*
             if(!db_exists){
                 try {
                     qexe.createBDByFile(tempconn, new FileReader("src\\main\\java\\com\\coltelloeforchetta\\server\\database\\createDB.sql"));
@@ -114,6 +179,12 @@ public class DBConnection {
                     e.printStackTrace();
                     System.out.println("File non trovato");
                 }
+            }*/
+
+            // creazione DB
+            if(!db_exists){
+                
+                qexe.createDB(tempconn, db_name);
             }
             
             if(tempconn != null){

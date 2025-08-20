@@ -234,8 +234,8 @@ public class queryExecutor {
             reader.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Errore nella lettura del file");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -320,8 +320,8 @@ public class queryExecutor {
             reader.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Errore nella lettura del file");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -366,8 +366,8 @@ public class queryExecutor {
             reader.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Errore nella lettura del file");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -421,8 +421,8 @@ public class queryExecutor {
             reader.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Errore nella lettura del file");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -470,8 +470,8 @@ public class queryExecutor {
             reader.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Errore nella lettura del file");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -520,103 +520,12 @@ public class queryExecutor {
             reader.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            System.out.println("Errore nella lettura del file");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    
-
-    
-
-    
-
-    
-
-    // TODO rimuovere DOPO
-    // TODO modificare insert
-    // TODO per ricordare: questo metodo va bene
-    /**
-     * Popola la tabella Libri usando il contenito di un file CSV
-     * @param conn connessione al database
-     * @param file file contenente i dati che verranno inseriti nel database. 
-     * Il file deve utilizzare come separatore il carattere "," e deve contenere le colonne
-     * "title", "authors" e "publish date (year)". Le colonne possono essere ordinate in 
-     * qualunque modo, ma devono essere presenti nel file.
-     */
-    public void populateLibriByCSV(Connection conn, String file, int quantity){
-        try {
-            //String CSVSplit = ",";
-            String CSVSplit = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String line;
-            String query = "INSERT INTO Libri (Titolo,Autore,AnnoPubblicazione) VALUES (?,?,?)";
-            int cont = 0;
-
-            // indici per determinare quale colonna del file contiene titolo, autore e anno di pubblicazione
-            int indexOfTitolo = -1;
-            int indexOfAutore = -1;
-            int indexOfAnnoPubblicazione = -1;
-
-            line = reader.readLine();
-            String[] colonne = line.split(CSVSplit);
-
-            for(int i = 0; i < colonne.length; i++){
-                colonne[i] = colonne[i].toLowerCase();
-                if(colonne[i].equals("title")){
-                    indexOfTitolo = i;
-                }
-                if(colonne[i].equals("authors")){
-                    indexOfAutore = i;
-                }
-                if(colonne[i].equals("publish date (year)")){
-                    indexOfAnnoPubblicazione = i;
-                }
-            }
-
-            if(indexOfTitolo == -1 || indexOfAutore == -1 || indexOfAnnoPubblicazione == -1){
-                System.out.println("Il file " + file + " non è adatto");
-            }
-
-            PreparedStatement stmt = null;
-            stmt = conn.prepareStatement(query);
-            while((line = reader.readLine()) != null ){
-                String[] valori = line.split(CSVSplit);
-                //titolo
-                stmt.setString(1, valori[indexOfTitolo]);
-                //autore
-                stmt.setString(2, valori[indexOfAutore]);
-                //anno di pubblicazione
-                stmt.setInt(3, Integer.parseInt(valori[indexOfAnnoPubblicazione]));
-
-                cont++;                
-                stmt.executeUpdate();
-                if(cont == quantity){
-                    break;
-                }
-            }
-
-            if(stmt!=null){
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            reader.close();
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-
     }
 
     // TODO fare insert per tutte le tabelle

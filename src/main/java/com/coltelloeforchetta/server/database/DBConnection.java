@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -71,7 +72,19 @@ public class DBConnection {
 
     private void accessoConFile(String path){
         System.out.println(path);
-        // TODO
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
+            db_url = reader.readLine();
+            db_name = reader.readLine();
+            username = reader.readLine();
+            password = reader.readLine();
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Errore nella lettura del file");
+        } 
 
     }
 

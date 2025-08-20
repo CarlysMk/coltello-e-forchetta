@@ -11,12 +11,12 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class cifratura {
 
-        public static String cifra(String plainTxtPsw) {
+        public String cifra(String plainTxtPsw) {
             String salt = BCrypt.gensalt(12);
             return BCrypt.hashpw(plainTxtPsw, salt);
         }
 
-        public static boolean verifica(String plainTxtPsw, String hash) {
+        public boolean verifica(String plainTxtPsw, String hash) {
             return BCrypt.checkpw(plainTxtPsw, hash);
         }
     }

@@ -71,7 +71,6 @@ public class DBConnection {
     }
 
     private void accessoConFile(String path){
-        System.out.println(path);
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
 

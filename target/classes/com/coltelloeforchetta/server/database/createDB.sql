@@ -1,1 +1,0 @@
-CREATE DATABASE the_knife_db;

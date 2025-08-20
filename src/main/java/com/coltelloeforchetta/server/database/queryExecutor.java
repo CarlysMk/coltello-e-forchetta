@@ -28,6 +28,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.coltelloeforchetta.common.cifratura;
+
 public class queryExecutor {
     /**
      * Controlla l'esistenza del database.
@@ -147,6 +149,10 @@ public class queryExecutor {
      * "username", "nome", "cognome", "nascita", "domicilio", "password", "ruolo" in questo preciso ordine
      */
     public void populateUtentiRegistratiByCSV(Connection conn, String file){
+
+        //per cifrare la password
+        cifratura c = new cifratura();
+
         try {
             //String CSVSplit = ",";
             String CSVSplit = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
@@ -177,10 +183,7 @@ public class queryExecutor {
                 //Domicilio
                 stmt.setString(5, valori[4]);
                 //Password
-                // TODO cifrare la password prima di fare l'insert
-                String password = valori[5];
-                // password = metodo_per_cifrare();
-                stmt.setString(6, password);
+                stmt.setString(6, c.cifra(valori[5]));
                 //Ruolo
                 if(valori[6].equals("TRUE")){
                     stmt.setBoolean(7, true);

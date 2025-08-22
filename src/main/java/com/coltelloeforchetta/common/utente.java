@@ -8,6 +8,12 @@
 
 package com.coltelloeforchetta.common;
 
+/**
+ * Classe che rappresenta un utente dell'applicazione, con dati personali,
+ * credenziali e ruolo (utente o ristoratore).
+ */
+
+
 public class utente {
 
     private String nomeUtente, cognomeUtente, username, plainTxtPsw, dataNascita, ruolo;
@@ -16,7 +22,17 @@ public class utente {
     boolean isRistoratore;
     private cifratura cif = new cifratura();
 
-    //costruttore per la REGISTRAZIONE di un nuovo utente
+    /**
+     * Costruttore per la registrazione di un nuovo utente.
+     *
+     * @param nome         Nome dell'utente
+     * @param cognome      Cognome dell'utente
+     * @param username     Nome utente per il login
+     * @param plainTxtPsw  Password in chiaro
+     * @param dataNascita  Data di nascita dell'utente
+     * @param ruolo        Ruolo dell'utente ("ristoratore" o "utente")
+     */
+
     public utente(String nome, String cognome, String username, String plainTxtPsw, String dataNascita, String ruolo) {
         this.nomeUtente = nome;
         this.cognomeUtente = cognome;
@@ -33,7 +49,13 @@ public class utente {
         //TODO registrare nel DB il nuovo utente
     }
 
-    //costruttore per LOGIN utente
+    /**
+     * Costruttore per il login di un utente esistente.
+     *
+     * @param username     Nome utente per il login
+     * @param plainTxtPsw  Password in chiaro
+     */
+
     public utente(String username, String plainTxtPsw){
         this.username = username;
         this.plainTxtPsw = plainTxtPsw;
@@ -49,76 +71,95 @@ public class utente {
         //TODO ottenere i dati completi dal DB e popolare i dati locali
     }
 
-        // Getter e Setter per nomeUtente
-        public String getNomeUtente() {
-            return nomeUtente;
-        }
+    /** @return Nome dell'utente */
+    public String getNomeUtente() {
+        return nomeUtente;
+    }
 
-        public void setNomeUtente(String nomeUtente) {
-            this.nomeUtente = nomeUtente;
-        }
+    /** @param nomeUtente Imposta il nome dell'utente */
+    public void setNomeUtente(String nomeUtente) {
+        this.nomeUtente = nomeUtente;
+    }
 
-        // Getter e Setter per cognomeUtente
-        public String getCognomeUtente() {
-            return cognomeUtente;
-        }
+    /** @return Cognome dell'utente */
+    public String getCognomeUtente() {
+        return cognomeUtente;
+    }
 
-        public void setCognomeUtente(String cognomeUtente) {
-            this.cognomeUtente = cognomeUtente;
-        }
+    /** @param cognomeUtente Imposta il cognome dell'utente */
+    public void setCognomeUtente(String cognomeUtente) {
+        this.cognomeUtente = cognomeUtente;
+    }
 
-        // Getter e Setter per username
-        public String getUsername() {
-            return username;
-        }
+    /** @return Username dell'utente */
+    public String getUsername() {
+        return username;
+    }
 
-        public void setUsername(String username) {
-            this.username = username;
-        }
+    /** @param username Imposta lo username dell'utente */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-        // Getter e Setter per plainTxtPsw
-        public String getplainTxtPsw() {
-            return plainTxtPsw;
-        }
+    /** @return Password in chiaro dell'utente */
+    public String getplainTxtPsw() {
+        return plainTxtPsw;
+    }
 
-        public void setplainTxtPsw(String plainTxtPsw) {
-            this.plainTxtPsw = plainTxtPsw;
-            this.HashedPsw = cif.cifra(plainTxtPsw);
-        }
+    /**
+     * Imposta la password in chiaro e aggiorna la versione cifrata.
+     *
+     * @param plainTxtPsw Password in chiaro
+     */
+    public void setplainTxtPsw(String plainTxtPsw) {
+        this.plainTxtPsw = plainTxtPsw;
+        this.HashedPsw = cif.cifra(plainTxtPsw);
+    }
 
-        // Getter e Setter per dataNascita
-        public String getDataNascita() {
-            return dataNascita;
-        }
+    /** @return Data di nascita dell'utente */
+    public String getDataNascita() {
+        return dataNascita;
+    }
 
-        public void setDataNascita(String dataNascita) {
-            this.dataNascita = dataNascita;
-        }
+    /** @param dataNascita Imposta la data di nascita dell'utente */
+    public void setDataNascita(String dataNascita) {
+        this.dataNascita = dataNascita;
+    }
 
-        // Getter e Setter per ruolo
-        public boolean getRuolo() {
-            return isRistoratore;
-        }
+    /**
+     * @return True se l'utente è un ristoratore, false se è un utente normale
+     */
+    public boolean getRuolo() {
+        return isRistoratore;
+    }
 
-        public void setRuolo(Boolean ruolo) {
-            this.isRistoratore = ruolo;
-        }
+    /**
+     * Imposta il ruolo dell'utente.
+     *
+     * @param ruolo True se ristoratore, false se utente
+     */
+    public void setRuolo(Boolean ruolo) {
+        this.isRistoratore = ruolo;
+    }
 
-        // Getter e Setter per domicilio
-        public String[] getDomicilio() {
-            return domicilio;
-        }
+    /** @return Array contenente le informazioni sul domicilio dell'utente */
+    public String[] getDomicilio() {
+        return domicilio;
+    }
 
-        public void setDomicilio(String[] domicilio) {
-            this.domicilio = domicilio;
-        }
+    /** @param domicilio Imposta il domicilio dell'utente */
+    public void setDomicilio(String[] domicilio) {
+        this.domicilio = domicilio;
+    }
 
-        //Getter per HashedPsw
-        public String getHashedPsw() {
-            return HashedPsw;
-        }
+    /** @return Password cifrata dell'utente */
+    public String getHashedPsw() {
+        return HashedPsw;
+    }
 
-        public void setHashedPsw(String HashedPsw) {
-            this.HashedPsw = HashedPsw;
-        }
+    /** @param HashedPsw Imposta direttamente la password cifrata */
+    public void setHashedPsw(String HashedPsw) {
+        this.HashedPsw = HashedPsw;
+    }
+
 }

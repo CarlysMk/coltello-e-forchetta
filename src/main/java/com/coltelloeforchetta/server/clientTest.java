@@ -40,5 +40,13 @@ public class clientTest {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        try {
+            int a = stub.metodo2(3);
+            System.out.println(a);
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

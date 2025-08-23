@@ -70,6 +70,13 @@ public class serverTK implements serverTKRemote {
         //throw new UnsupportedOperationException("Unimplemented method 'metodo'");
         System.out.println("server risponde");
     }
+
+    @Override
+    public int metodo2(int a) throws RemoteException {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'metodo2'");
+        return a*a;
+    }
     
 
     

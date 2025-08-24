@@ -1,1 +1,16 @@
-.idea
+# Maven
+/target/
+
+# IntelliJ
+/.idea/
+/*.iml
+
+# Java
+*.class
+*.log
+*.tmp
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db

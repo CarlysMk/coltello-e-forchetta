@@ -1,4 +1,0 @@
-jdbc:postgresql://localhost:5432/
-the_knife_db
-postgres
-root

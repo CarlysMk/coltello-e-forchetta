@@ -1,3 +1,11 @@
-com/coltelloeforchetta/utility/GestioneFile.class
-com/coltelloeforchetta/models/Utente.class
-com/coltelloeforchetta/Main.class
+com\coltelloeforchetta\common\cifratura.class
+com\coltelloeforchetta\server\clientTest.class
+com\coltelloeforchetta\server\database\queryExecutor.class
+com\coltelloeforchetta\common\ristorante.class
+com\coltelloeforchetta\common\utente.class
+com\coltelloeforchetta\server\database\DBConnection.class
+com\coltelloeforchetta\common\TestMain.class
+com\coltelloeforchetta\client\clientTK.class
+com\coltelloeforchetta\common\serverTKRemote.class
+com\coltelloeforchetta\server\serverTK.class
+com\coltelloeforchetta\common\recensione.class

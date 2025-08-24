@@ -1,9 +1,0 @@
-username,nome,cognome,nascita,domicilio,password,ruolo
-RyanWard00,Ryan,Ward,30/01/2000,"1345 Collins Avenue, New York, Stati Uniti D'America",segreta,FALSE
-AnMazzi,Anna,Mazzi,26/09/1994,"Via Venezia 28, Firenze, Italia",segreta,TRUE
-KING_J,Joe,King,1/10/1971,"25 South Crescent, Bristol, Regno Unito",segreta,FALSE
-IlaPa,Ilaria,Padovesi,12/02/1983,"Via del Piave 61, Agrigento, Italia",segreta,TRUE
-Beckman_Andrew,Andrew,Beckman,,4064 Harter Street Seattle Stati Uniti D'America,segreta,FALSE
-FaustoLomb97,Fausto,Lombardi,4/03/1997,"Via Zannoni 40, Bergamo, Italia",segreta,TRUE
-Cocci_Giul,Giuliano,Cocci,12/07/2000,"Corso Vittorio Emanuale 87, Como, Italia",segreta,FALSE
-Mark_Faust_87,Markus,Faust,,"Viale Augusto 57, Erba, Italia",segreta,FALSE

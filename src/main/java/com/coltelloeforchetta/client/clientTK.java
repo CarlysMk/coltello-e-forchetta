@@ -9,5 +9,7 @@
 package com.coltelloeforchetta.client;
 
 public class clientTK {
-    // TODO
+    public static void main(String[] args) {
+
+    }
 }
